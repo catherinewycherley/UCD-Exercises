@@ -42,3 +42,13 @@ year_1_str=str(year_1)
 revenue_4_str=str(revenue_4)
 sentence = 'The revenue of'  +    company_1 + ' in' + ' 2017' + ' was' +'  229.23' + ' billion.'
 print(sentence)
+names = ['Apple Inc', 'Coca-Cola', 'Walmart']
+print(names)
+prices = [159.54, 37.13, 71.17]
+print(names[0])
+print(names[1])
+print(prices[-1])
+names_subset = names[1:]
+print(names_subset)
+prices_subset = prices[0:3]
+print(prices_subset)
