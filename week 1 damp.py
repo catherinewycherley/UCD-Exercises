@@ -16,3 +16,7 @@ print (total)
 print("total")
 average= total/3
 print (average)
+pe_ratio = 44
+print(type(pe_ratio))
+print (1==2)
+print (1==1)
