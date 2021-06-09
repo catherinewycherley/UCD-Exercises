@@ -52,3 +52,33 @@ names_subset = names[1:]
 print(names_subset)
 prices_subset = prices[0:3]
 print(prices_subset)
+cpi=[['Jan','Feb','Mar'],[204.9,256.9,387.6]]
+print(cpi[1])
+print(cpi[1][0])
+stocks = [names, prices]
+print(stocks)
+print(stocks[1])
+print(stocks[0][1])
+print(stocks[1][2])
+prices.sort()
+print(prices)
+months=['Jan','feb','Mar']
+months.append('apr')
+print(months)
+months.extend(['may','jun','jul'])
+print(months)
+calenders=['Jan','feb','Mar']
+priceses=[10,20,30]
+print(calenders.index('feb'))
+print(priceses[1])
+min_price=min(prices)
+min_index=prices.index(min_price)
+min_month=months[min_index]
+print(min_month)
+import numpy as np
+prices = [170.12, 93.29, 55.28, 145.30, 171.81, 59.50, 100.50]
+earnings = [9.2, 5.31, 2.41, 5.91, 15.42, 2.51, 6.79]
+prices_array = np.array(prices)
+earnings_array=np.array(earnings)
+print(prices_array)
+print(earnings_array)
