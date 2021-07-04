@@ -68,6 +68,8 @@ print(aapl.shape,dropcolumns.shape)
 cleaned_data = aapl.fillna(0)
 print(cleaned_data)
 
+
+
 drop_duplicates= aapl.drop_duplicates()
 print(aapl.shape,drop_duplicates.shape)
 
@@ -90,6 +92,7 @@ print(aapl['Return'])
 
 aapl['ma50'] = aapl['Close'].rolling(50).mean()
 
+
 plt.figure(figsize=(10, 8))
 aapl['ma50'].plot(label='MA50')
 aapl['Close'].plot(label='Close')
@@ -101,5 +104,17 @@ aapl['MA50'] = aapl['Close'].rolling(50).mean()
 aapl = aapl.dropna()
 print(aapl.head())
 
+microsoft = pd.read_csv("Microsoft_data.csv")
+
+print(microsoft)
 
 
+microsoft["Date"] = pd.to_datetime(microsoft["Date"])
+print(microsoft.info())
+
+microsoft.set_index(keys='Date', inplace=True)
+print(microsoft.head())
+
+aapl_microsoft=aapl.merge(microsoft, on='Date', suffixes=('_aapl', '_microsoft'))
+
+print(aapl_microsoft.head(5))
