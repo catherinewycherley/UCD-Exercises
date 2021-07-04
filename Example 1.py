@@ -6,3 +6,6 @@ r = requests.get(url)
 company_overview = r.json()
 
 print(company_overview)
+
+aapl = pd.read_csv("AAPL.csv")
+print(aapl)
