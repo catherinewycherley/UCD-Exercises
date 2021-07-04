@@ -9,3 +9,5 @@ print(company_overview)
 
 aapl = pd.read_csv("AAPL.csv")
 print(aapl)
+print(aapl.head())
+print(aapl.tail())
