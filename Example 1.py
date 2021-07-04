@@ -11,3 +11,7 @@ aapl = pd.read_csv("AAPL.csv")
 print(aapl)
 print(aapl.head())
 print(aapl.tail())
+
+print(aapl.describe())
+
+print(aapl.dtypes)
