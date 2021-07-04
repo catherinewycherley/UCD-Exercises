@@ -135,3 +135,8 @@ plt.show()
 from datetime import datetime
 datetime.now()
 print(datetime.now())
+
+aapl['Date'] = aapl['Date'].apply(pd.Timestamp)
+microsoft['Date'] = microsoft['Date'].apply(pd.Timestamp)
+print(aapl.head())
+print(microsofr.head())
