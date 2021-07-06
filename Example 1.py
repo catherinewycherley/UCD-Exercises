@@ -29,6 +29,8 @@ aapl_2020 = aapl.loc['2020']
 aapl_2020 = aapl_2020.sort_index(ascending=True)
 print(aapl_2020)
 
+
+
 aapl['Change'] = aapl['Close'] - aapl['Open']
 print(aapl)
 
@@ -82,6 +84,9 @@ print(aapl1.tail())
 
 plt.figure(figsize=(10, 8))
 aapl['Close'].plot()
+plt.xlabel('Date')
+plt.ylabel('Price')
+plt.title('Closing price of Apple Stock')
 plt.show()
 
 aapl['PriceDiff'] = aapl['Close'].shift(-1) - aapl['Close']
@@ -89,6 +94,8 @@ print(aapl['PriceDiff'])
 
 aapl['Return'] = aapl['PriceDiff'] /aapl['Close']
 print(aapl['Return'])
+
+
 
 aapl['ma50'] = aapl['Close'].rolling(50).mean()
 
@@ -118,3 +125,34 @@ print(microsoft.head())
 aapl_microsoft=aapl.merge(microsoft, on='Date', suffixes=('_aapl', '_microsoft'))
 
 print(aapl_microsoft.head(5))
+
+
+plt.figure(figsize=(15, 8))
+aapl['Volume'].plot()
+plt.xlabel('Date')
+plt.ylabel('Volume')
+plt.title('volume of Apple Stock')
+plt.show()
+
+import matplotlib.pyplot as plt
+
+aapl.plot(y=["High", "Low",])
+plt.show()
+
+def calculate_pe_ratio(closing_price, month):
+    if month >= 1 and month < 4:
+        earnings = 1.10
+    elif month >= 4 and month < 7:
+        earnings = 0.68
+    elif month >= 7 and month < 10:
+        earnings = 0.59
+    else:
+        earnings = 0.78
+    return closing_price / earnings / 4
+
+
+aapl_2020['pe_ratio'] =np.vectorize(calculate_pe_ratio)(aapl_2020['Close'], aapl_2020.index.month)
+
+print(aapl_2020)
+
+
