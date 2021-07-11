@@ -40,3 +40,14 @@ print(aapl.shape,dropcolumns.shape)
 
 cleaned_data = aapl.fillna(0)
 print(cleaned_data)
+
+
+Column_List = ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume']
+
+for x in Column_List:
+    print (x)
+
+
+
+cleaned_data.plot(x = "Date", y = Column_List, subplots = True, layout = (3, 3), figsize = (20, 20), sharex = False, title = " Trend of Apple Stock Value from 1980 - 2020", rot = 90)
+plt.show()
