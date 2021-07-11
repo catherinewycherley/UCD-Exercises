@@ -51,6 +51,8 @@ print(aapl.sort_values("Change"))
 new_appl=aapl.dropna()
 print(new_appl)
 
+
+
 print(new_appl.sort_values("Change"))
 
 print(aapl.head())
@@ -140,14 +142,14 @@ aapl.plot(y=["High", "Low",])
 plt.show()
 
 def calculate_pe_ratio(closing_price, month):
-    if month >= 1 and month < 4:
-        earnings = 1.10
-    elif month >= 4 and month < 7:
-        earnings = 0.68
-    elif month >= 7 and month < 10:
-        earnings = 0.59
+    if month >= 1 and month < 3:
+        earnings = 1.02
+    elif month >= 3 and month < 6:
+        earnings = 0.82
+    elif month >= 6 and month < 9:
+        earnings = 0.70
     else:
-        earnings = 0.78
+        earnings = 0.65
     return closing_price / earnings / 4
 
 
@@ -155,4 +157,20 @@ aapl_2020['pe_ratio'] =np.vectorize(calculate_pe_ratio)(aapl_2020['Close'], aapl
 
 print(aapl_2020)
 
+msft = pd.read_csv("MSFT-stock.csv")
+
+print(msft)
+
+
+msft["Date"] = pd.to_datetime(msft["Date"])
+print(msft.info())
+
+msft.set_index(keys='Date', inplace=True)
+print(msft.head())
+
+aapl_msft=aapl.merge(msft, on='Date', suffixes=('_aapl', '_msft'))
+
+print(aapl_msft.head(5))
+print (aapl_msft.tail(5))
+print(aapl_msft)
 
