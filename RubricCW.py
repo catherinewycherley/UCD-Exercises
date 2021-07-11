@@ -13,3 +13,16 @@ company_overview = r.json()
 
 print(company_overview)
 
+aapl = pd.read_csv("AAPL.csv")
+print(aapl)
+print(aapl.head())
+print(aapl.tail())
+
+print(aapl.describe())
+
+print(aapl.dtypes)
+
+
+
+aapl["Date"] = pd.to_datetime(aapl["Date"])
+print(aapl.info())
