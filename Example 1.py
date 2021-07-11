@@ -95,9 +95,7 @@ aapl['PriceDiff'] = aapl['Close'].shift(-1) - aapl['Close']
 print(aapl['PriceDiff'])
 
 aapl['Return'] = aapl['PriceDiff'] /aapl['Close']
-print(aapl['Return'])
-
-
+print(aapl['R
 
 aapl['ma50'] = aapl['Close'].rolling(50).mean()
 

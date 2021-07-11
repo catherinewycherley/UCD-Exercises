@@ -3,10 +3,9 @@ import numpy as np
 import requests
 
 import matplotlib.pyplot as plt
-import seaborn as sns
-import plotly.graph_objects as go
+
 plt.style.use('dark_background')
-import plotly.express as px
+
 
 
 url = 'https://www.alphavantage.co/query?function=OVERVIEW&symbol=aapl&apikey=CJW6S4N6QQGYGWPZ'
@@ -30,22 +29,9 @@ Column_List = ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume']
 for x in Column_List:
     print (x)
 
-aapl.plot(x = "Date", y = Column_List, subplots = True, layout = (3, 3), figsize = (20, 20), sharex = False, title = "Apple Stock Value Trend from 1980 - 2020", rot = 90)
-plt.show()
-
-
 aapl["Date"] = pd.to_datetime(aapl["Date"])
 print(aapl.info())
 
-
-
-aapl.set_index(keys='Date', inplace=True)
-print(aapl.head())
-
-
-aapl_2020 = aapl.loc['2020']
-aapl_2020 = aapl_2020.sort_index(ascending=True)
-print(aapl_2020)
 
 
 mask_closeprice = aapl.Close > 100
@@ -78,7 +64,7 @@ cleaned_data = aapl.fillna(0)
 print(cleaned_data)
 
 
-cleaned_data.plot( y = Column_List, subplots = True, layout = (3, 3), figsize = (20, 20), sharex = False, title = "Apple Stock Value Trend from 1980 - 2020", rot = 90)
+cleaned_data.plot(x = "Date", y = Column_List, subplots = True, layout = (3, 3), figsize = (20, 20), sharex = False, title = " Trend of Apple Stock Value from 1980 - 2020", rot = 90)
 plt.show()
 
 
@@ -91,6 +77,17 @@ avg_price=cleaned_data.groupby("Close").mean()
 print(avg_price)
 
 
+mask_closeprice = cleaned_data.Close > 100
+high_price = cleaned_data.loc[mask_closeprice]
+print(high_price)
+
+mask_closeprice = cleaned_data.Close > 100
+mask_volume = cleaned_data.Volume > 300000000
+millionhigh_price_volume = cleaned_data.loc[mask_closeprice & mask_volume]
+
+print(millionhigh_price_volume)
+
+
 
 plt.figure(figsize=(10, 8))
 cleaned_data['Change'].plot()
@@ -98,33 +95,6 @@ plt.xlabel('DATE')
 plt.ylabel('PRICE')
 plt.title('Change of Apple Stock')
 plt.show()
-
-
-
-
-def calculate_pe_ratio(closing_price, month):
-    if month >= 1 and month < 3:
-        earnings = 1.00
-    elif month >= 3 and month < 6:
-        earnings = 0.9
-    elif month >= 6 and month < 9:
-        earnings = 0.8
-    else:
-        earnings = 0.9
-    return closing_price / earnings / 4
-
-
-aapl_2020['pe_ratio'] =np.vectorize(calculate_pe_ratio)(aapl_2020['Close'], aapl_2020.index.month)
-
-print(aapl_2020)
-
-plt.figure(figsize=(10, 8))
-aapl_2020['pe_ratio'].plot()
-plt.xlabel('DATE')
-plt.ylabel('PE RATIO')
-plt.title('PE Ratio of Apple Stock in 2020')
-plt.show()
-
 
 
 msft = pd.read_csv("MSFT-stock.csv")
@@ -151,14 +121,47 @@ for i in msft:
 
 
 
-aapl_msft=aapl.merge(msft, on='Date', suffixes=('_aapl', '_msft'))
+aapl_msft=cleaned_data.merge(msft, on='Date', suffixes=('_aapl', '_msft'))
 
 print(aapl_msft.head(5))
 print (aapl_msft.tail(5))
 print(aapl_msft)
 
-x=aapl_msft["Date"].head(5)
-y1=aapl_msft["Close_aapl"].head(5)
-y2=aapl_msft[Close_msft].head(5)
-ax.plot(x,y1)
+
+aapl_msft.plot(x = 'Date', y = ['Close_aapl', 'Close_msft'], kind='line', title= "Comparison of Apple & Microsoft Closing Stock")
+plt.show()
+
+cleaned_data.set_index(keys='Date', inplace=True)
+
+
+aapl_2020 = cleaned_data.loc['2020']
+aapl_2020 = aapl_2020.sort_index(ascending=True)
+print(aapl_2020)
+
+
+
+
+def calculate_pe_ratio(closing_price, month):
+    if month >= 1 and month < 3:
+        earnings = 1.00
+    elif month >= 3 and month < 6:
+        earnings = 0.9
+    elif month >= 6 and month < 9:
+        earnings = 0.8
+    else:
+        earnings = 0.9
+    return closing_price / earnings / 4
+
+
+
+
+aapl_2020['pe_ratio'] =np.vectorize(calculate_pe_ratio)(aapl_2020['Close'], aapl_2020.index.month)
+
+print(aapl_2020)
+
+plt.figure(figsize=(10, 8))
+aapl_2020['pe_ratio'].plot()
+plt.xlabel('DATE')
+plt.ylabel('PE RATIO')
+plt.title('PE Ratio of Apple Stock in 2020')
 plt.show()
