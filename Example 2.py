@@ -15,7 +15,7 @@ company_overview = r.json()
 print(company_overview)
 
 aapl = pd.read_csv("AAPL.csv")
-print(aapl)
+
 print(aapl.head())
 print(aapl.tail())
 
@@ -24,34 +24,16 @@ print(aapl.describe())
 print(aapl.dtypes)
 
 
-
 aapl["Date"] = pd.to_datetime(aapl["Date"])
 print(aapl.info())
 
 
-
-mask_closeprice = aapl.Close > 100
-high_price = aapl.loc[mask_closeprice]
-print(high_price)
-
-mask_closeprice = aapl.Close > 100
-mask_volume = aapl.Volume > 300000000
-millionhigh_price_volume = aapl.loc[mask_closeprice & mask_volume]
-
-print(millionhigh_price_volume)
-
-
-new_appl=aapl.dropna()
-print(new_appl)
-
-
 missing_values_count = aapl.isnull().sum()
-print(missing_values_count[0:5])
+print(missing_values_count[0:8])
 
 droprows= aapl.dropna()
 
 print(aapl.shape,droprows.shape)
-
 
 dropcolumns = aapl.dropna(axis=1)
 print(aapl.shape,dropcolumns.shape)
