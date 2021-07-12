@@ -61,4 +61,5 @@ print(cleaned_data.sort_values("Change"))
 cleaned_data1 = cleaned_data.iloc[:,1]
 print(cleaned_data1)
 
-
+avg_price=cleaned_data.groupby("Close").mean()
+print(avg_price)
