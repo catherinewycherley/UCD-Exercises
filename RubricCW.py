@@ -63,3 +63,14 @@ print(cleaned_data1)
 
 avg_price=cleaned_data.groupby("Close").mean()
 print(avg_price)
+
+
+mask_closeprice = cleaned_data.Close > 100
+high_price = cleaned_data.loc[mask_closeprice]
+print(high_price)
+
+mask_closeprice = cleaned_data.Close > 100
+mask_volume = cleaned_data.Volume > 300000000
+millionhigh_price_volume = cleaned_data.loc[mask_closeprice & mask_volume]
+
+print(millionhigh_price_volume)
