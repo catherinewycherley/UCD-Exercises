@@ -51,3 +51,10 @@ for x in Column_List:
 
 cleaned_data.plot(x = "Date", y = Column_List, subplots = True, layout = (3, 3), figsize = (20, 20), sharex = False, title = " Trend of Apple Stock Value from 1980 - 2020", rot = 90)
 plt.show()
+
+
+
+cleaned_data['Change'] = cleaned_data['Close'] - cleaned_data['Open']
+print(cleaned_data)
+
+print(cleaned_data.sort_values("Change"))
