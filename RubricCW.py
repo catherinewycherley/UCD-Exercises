@@ -74,3 +74,12 @@ mask_volume = cleaned_data.Volume > 300000000
 millionhigh_price_volume = cleaned_data.loc[mask_closeprice & mask_volume]
 
 print(millionhigh_price_volume)
+
+
+
+plt.figure(figsize=(10, 8))
+cleaned_data['Change'].plot()
+plt.xlabel('DATE')
+plt.ylabel('PRICE')
+plt.title('Change of Apple Stock')
+plt.show()

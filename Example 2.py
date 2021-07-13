@@ -104,6 +104,7 @@ for i in msft:
     for ind, row in msft.iterrows():
         msft.loc[ind, [" Share Price Change"]] = row['Close'] - row['Open']
         print(msft.head())
+        break
 
 
 
