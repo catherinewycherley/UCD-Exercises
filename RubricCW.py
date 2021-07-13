@@ -92,3 +92,5 @@ print(msft)
 
 msft["Date"] = pd.to_datetime(msft["Date"])
 print(msft.info())
+
+msft.set_index(keys='Date', inplace=True)
