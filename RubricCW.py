@@ -83,3 +83,12 @@ plt.xlabel('DATE')
 plt.ylabel('PRICE')
 plt.title('Change of Apple Stock')
 plt.show()
+
+
+msft = pd.read_csv("MSFT-stock.csv")
+
+print(msft)
+
+
+msft["Date"] = pd.to_datetime(msft["Date"])
+print(msft.info())
