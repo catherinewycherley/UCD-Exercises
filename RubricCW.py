@@ -127,4 +127,6 @@ print(aapl_msft)
 aapl_msft.plot(x = 'Date', y = ['Close_aapl', 'Close_msft'], kind='line', title= "Comparison of Apple & Microsoft Closing Stock")
 plt.show()
 
+cleaned_data.set_index(keys='Date', inplace=True)
+
 
