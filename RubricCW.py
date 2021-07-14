@@ -111,4 +111,15 @@ for i in msft:
     for ind, row in msft.iterrows():
         msft.loc[ind, [" Share Price Change"]] = row['Close'] - row['Open']
         print(msft.head())
+
+
+
+
+
+
+        aapl_msft = cleaned_data.merge(msft, on='Date', suffixes=('_aapl', '_msft'))
+
+        print(aapl_msft.head(5))
+        print(aapl_msft.tail(5))
+        print(aapl_msft)
         break
