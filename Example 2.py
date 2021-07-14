@@ -44,6 +44,13 @@ print(cleaned_data)
 
 Column_List = ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume']
 
+print(Column_List[0])
+print(Column_List[-1])
+print(Column_List[0:6])
+
+my_array=np.array(Column_List)
+print(my_array)
+
 for x in Column_List:
     print (x)
 

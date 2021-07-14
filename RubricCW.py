@@ -47,6 +47,13 @@ Column_List = ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume']
 for x in Column_List:
     print (x)
 
+print(Column_List[0])
+print(Column_List[-1])
+print(Column_List[0:6])
+
+my_array=np.array(Column_List)
+print(my_array)
+
 
 
 cleaned_data.plot(x = "Date", y = Column_List, subplots = True, layout = (3, 3), figsize = (20, 20), sharex = False, title = " Trend of Apple Stock Value from 1980 - 2020", rot = 90)
