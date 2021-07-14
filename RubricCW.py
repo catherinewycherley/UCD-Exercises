@@ -130,3 +130,8 @@ plt.show()
 cleaned_data.set_index(keys='Date', inplace=True)
 
 
+aapl_2020 = cleaned_data.loc['2020']
+aapl_2020 = aapl_2020.sort_index(ascending=True)
+print(aapl_2020)
+
+
