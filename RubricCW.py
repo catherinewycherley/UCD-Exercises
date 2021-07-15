@@ -145,7 +145,7 @@ def calculate_pe_ratio(closing_price, month):
     elif month >= 6 and month < 9:
         earnings = 0.8
     else:
-        earnings = 0.9
+        earnings = 0.82
     return closing_price / earnings / 4
 
 
@@ -154,3 +154,10 @@ def calculate_pe_ratio(closing_price, month):
 aapl_2020['pe_ratio'] =np.vectorize(calculate_pe_ratio)(aapl_2020['Close'], aapl_2020.index.month)
 
 print(aapl_2020)
+
+plt.figure(figsize=(10, 8))
+aapl_2020['pe_ratio'].plot()
+plt.xlabel('DATE')
+plt.ylabel('PE RATIO')
+plt.title('PE Ratio of Apple Stock in 2020')
+plt.show()
