@@ -88,7 +88,7 @@ plt.figure(figsize=(10, 8))
 cleaned_data['Change'].plot()
 plt.xlabel('DATE')
 plt.ylabel('PRICE')
-plt.title('Change of Apple Stock')
+plt.title('Change in Price of Apple Stock')
 plt.show()
 
 
@@ -135,3 +135,22 @@ aapl_2020 = aapl_2020.sort_index(ascending=True)
 print(aapl_2020)
 
 
+
+
+def calculate_pe_ratio(closing_price, month):
+    if month >= 1 and month < 3:
+        earnings = 1.00
+    elif month >= 3 and month < 6:
+        earnings = 0.9
+    elif month >= 6 and month < 9:
+        earnings = 0.8
+    else:
+        earnings = 0.9
+    return closing_price / earnings / 4
+
+
+
+
+aapl_2020['pe_ratio'] =np.vectorize(calculate_pe_ratio)(aapl_2020['Close'], aapl_2020.index.month)
+
+print(aapl_2020)
