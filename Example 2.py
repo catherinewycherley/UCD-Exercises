@@ -86,7 +86,7 @@ print(millionhigh_price_volume)
 
 plt.figure(figsize=(10, 8))
 cleaned_data['Change'].plot()
-plt.xlabel('DATE')
+plt.xlabel('MONTH')
 plt.ylabel('PRICE')
 plt.title('Change of Apple Stock')
 plt.show()
